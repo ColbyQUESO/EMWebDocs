@@ -21,6 +21,7 @@ namespace EM_WebDocs
         private string ocrtext = "";
         private string votes = "";
         private DateTime date;
+        private List<string> keywords;
 
         public string Agency
         {
@@ -187,6 +188,18 @@ namespace EM_WebDocs
             set
             {
                 votes = value;
+            }
+        }
+
+        public List<string> Keywords
+        {
+            get
+            {
+                return keywords;
+            }
+            set
+            {
+                keywords = value;
             }
         }
     }

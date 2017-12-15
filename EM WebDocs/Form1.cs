@@ -23,6 +23,7 @@ namespace EM_WebDocs
         private static string SQL_PATH = Directory.GetParent(Application.CommonAppDataPath).ToString() + "\\EMDocsDB.sqlite";
         private static string ID_PATH = Directory.GetParent(Application.CommonAppDataPath).ToString() + "\\EMDocsDBID.sqlite";
         string sSource = "";
+        string sProj = "";
 
         public Form1()
         {
@@ -273,6 +274,7 @@ namespace EM_WebDocs
             loadingPanel.Visible = true;
             loadingPanel.Enabled = true;
             sSource = cbSource.SelectedItem.ToString();
+            sProj = tbProjManual.Text;
 
             if (BGW_Organize.IsBusy != true)
             {
@@ -359,7 +361,7 @@ namespace EM_WebDocs
                         {
                             Directory.CreateDirectory(ocrDir);
                         }
-                    }                 
+                    }
 
                     //Path to save to
                     File.Copy(eDoc.Filename, docDir + Path.GetFileNameWithoutExtension(eDoc.Filename) + eDoc.Extension, true); //tbOutputOrg.Text + "\\" + ag + "\\" + year + "\\" + month + "\\" + RemoveProbChars(saveFile) + eDoc.Extension, true);
@@ -443,9 +445,27 @@ namespace EM_WebDocs
                     docTypeDet.InnerText = eDoc.TypeDet;
                     flds.AppendChild(docTypeDet);
 
-                    XmlElement project = xml.CreateElement("Project");
-                    project.InnerText = eDoc.Project;
-                    flds.AppendChild(project);
+                    if (sProj != "")
+                    {
+                        if (eDoc.Project == "")
+                        {
+                            XmlElement project = xml.CreateElement("Project");
+                            project.InnerText = sProj;
+                            flds.AppendChild(project);
+                        }
+                        {
+                            XmlElement project = xml.CreateElement("Project");
+                            project.InnerText = eDoc.Project;
+                            flds.AppendChild(project);
+                        }
+                    }
+                    else
+                    {
+                        XmlElement project = xml.CreateElement("Project");
+                        project.InnerText = eDoc.Project;
+                        flds.AppendChild(project);
+                    }
+
 
                     XmlElement officials = xml.CreateElement("Officials");
                     officials.InnerText = eDoc.Officials;

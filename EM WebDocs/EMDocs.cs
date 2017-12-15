@@ -43,6 +43,25 @@ namespace EM_WebDocs
                 text = "";
             }
 
+            //Identify most commonly used terms in document
+            IEnumerable<Tuple<string, int>> terms = GetMostUsedWords(text);
+            List<string> keywords = new List<string>();
+
+            foreach (var t in terms)
+            {
+                //Get keywords from SQLite...need to build the SQLite method and table in file and finish the code below that compares.  Then put keywords most found in XML node
+                List<string> kwListText = new List<string>();
+                kwListText = SQLite.GetKeyWord("dbo.key_agency_ocrtext");
+
+                foreach (var k in kwListText)
+                {
+                    if (t.Item1 == k //look in sqlite for terms to remove)
+                    Console.WriteLine(t.Item1 + ", " + t.Item2);
+                }
+
+
+            }
+
             var matchID = Regex.Match(file, @"\\(\d+)_ _"); //match for docs from the website
 
             //emcity.org
@@ -164,6 +183,20 @@ namespace EM_WebDocs
             }       
 
             return agency;
+        }
+
+        private IEnumerable<Tuple<string, int>> GetMostUsedWords(string text)
+        {
+            var toIgnore = new List<string> { "the", "of", "and", "to", "a", "-" };
+
+            var orderedWords = text
+              .Split(new char[] { '.', '?', '!', ' ', ';', ':', ',' }, StringSplitOptions.RemoveEmptyEntries)
+              .GroupBy(x => x.ToLower())
+              .Select(x => Tuple.Create(x.Key.ToLower(), x.Count()))
+              .OrderByDescending(x => x.Item2)
+              .Take(100);      
+
+            return orderedWords;
         }
 
         private DateTime GetDate(string file, string text)

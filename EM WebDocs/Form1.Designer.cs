@@ -61,6 +61,9 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tbWriteOutOrg = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnBrowseOutputOrg = new System.Windows.Forms.Button();
+            this.cbSource = new System.Windows.Forms.ComboBox();
+            this.label13 = new System.Windows.Forms.Label();
             this.cbOCR = new System.Windows.Forms.CheckBox();
             this.tbOutputOrg = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
@@ -72,17 +75,17 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.statusLabel = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.BGW_Organize = new System.ComponentModel.BackgroundWorker();
-            this.label13 = new System.Windows.Forms.Label();
-            this.cbSource = new System.Windows.Forms.ComboBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
             this.browseProgramDataDirToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.browseCurrentSaveFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.browseBaseFolder = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnBrowseOutputOrg = new System.Windows.Forms.Button();
+            this.browseCurrentSaveFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fbdOutputOrg = new System.Windows.Forms.FolderBrowserDialog();
+            this.label14 = new System.Windows.Forms.Label();
+            this.tbProjManual = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
             this.gbMain.SuspendLayout();
             this.gbDocsImgs.SuspendLayout();
             this.gbDups.SuspendLayout();
@@ -93,8 +96,8 @@
             this.loadingPanel.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tbURL
@@ -209,7 +212,7 @@
             this.tbIDLow.Name = "tbIDLow";
             this.tbIDLow.Size = new System.Drawing.Size(69, 20);
             this.tbIDLow.TabIndex = 10;
-            this.tbIDLow.Text = "6573";
+            this.tbIDLow.Text = "6800";
             // 
             // label4
             // 
@@ -427,6 +430,9 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label15);
+            this.groupBox1.Controls.Add(this.tbProjManual);
+            this.groupBox1.Controls.Add(this.label14);
             this.groupBox1.Controls.Add(this.btnBrowseOutputOrg);
             this.groupBox1.Controls.Add(this.cbSource);
             this.groupBox1.Controls.Add(this.label13);
@@ -443,14 +449,46 @@
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             // 
+            // btnBrowseOutputOrg
+            // 
+            this.btnBrowseOutputOrg.Location = new System.Drawing.Point(394, 129);
+            this.btnBrowseOutputOrg.Name = "btnBrowseOutputOrg";
+            this.btnBrowseOutputOrg.Size = new System.Drawing.Size(34, 22);
+            this.btnBrowseOutputOrg.TabIndex = 17;
+            this.btnBrowseOutputOrg.Text = "...";
+            this.btnBrowseOutputOrg.UseVisualStyleBackColor = true;
+            this.btnBrowseOutputOrg.Click += new System.EventHandler(this.btnBrowseOutputOrg_Click);
+            // 
+            // cbSource
+            // 
+            this.cbSource.FormattingEnabled = true;
+            this.cbSource.Items.AddRange(new object[] {
+            "emcity.org",
+            "GRAMA",
+            "Resolution"});
+            this.cbSource.Location = new System.Drawing.Point(9, 32);
+            this.cbSource.Name = "cbSource";
+            this.cbSource.Size = new System.Drawing.Size(121, 21);
+            this.cbSource.TabIndex = 16;
+            this.cbSource.Text = "EMCity.org";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(6, 16);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(68, 13);
+            this.label13.TabIndex = 15;
+            this.label13.Text = "Source Type";
+            // 
             // cbOCR
             // 
             this.cbOCR.AutoSize = true;
             this.cbOCR.Location = new System.Drawing.Point(9, 167);
             this.cbOCR.Name = "cbOCR";
-            this.cbOCR.Size = new System.Drawing.Size(141, 17);
+            this.cbOCR.Size = new System.Drawing.Size(173, 17);
             this.cbOCR.TabIndex = 14;
-            this.cbOCR.Text = "Extract Text from PDFs?";
+            this.cbOCR.Text = "Extract (OCR) Text from PDFs?";
             this.cbOCR.UseVisualStyleBackColor = true;
             // 
             // tbOutputOrg
@@ -546,33 +584,21 @@
             this.statusLabel.Text = "Please wait...";
             this.statusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox1.Image = global::EM_WebDocs.Properties.Resources.Main_Logo_Gif;
+            this.pictureBox1.Location = new System.Drawing.Point(7, 6);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(75, 75);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
             // BGW_Organize
             // 
             this.BGW_Organize.DoWork += new System.ComponentModel.DoWorkEventHandler(this.BGW_Organize_DoWork);
             this.BGW_Organize.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.BGW_Organize_RunWorkerCompleted);
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(6, 16);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(68, 13);
-            this.label13.TabIndex = 15;
-            this.label13.Text = "Source Type";
-            // 
-            // cbSource
-            // 
-            this.cbSource.FormattingEnabled = true;
-            this.cbSource.Items.AddRange(new object[] {
-            "emcity.org",
-            "GRAMA",
-            "Other",
-            "Resolution"});
-            this.cbSource.Location = new System.Drawing.Point(9, 32);
-            this.cbSource.Name = "cbSource";
-            this.cbSource.Size = new System.Drawing.Size(121, 21);
-            this.cbSource.TabIndex = 16;
-            this.cbSource.Text = "EMCity.org";
             // 
             // toolStrip1
             // 
@@ -605,24 +631,6 @@
             this.browseProgramDataDirToolStripMenuItem1.Text = "Browse ProgramData Directory";
             this.browseProgramDataDirToolStripMenuItem1.Click += new System.EventHandler(this.browseProgramDataDirToolStripMenuItem1_Click);
             // 
-            // browseCurrentSaveFolderToolStripMenuItem
-            // 
-            this.browseCurrentSaveFolderToolStripMenuItem.Name = "browseCurrentSaveFolderToolStripMenuItem";
-            this.browseCurrentSaveFolderToolStripMenuItem.Size = new System.Drawing.Size(236, 22);
-            this.browseCurrentSaveFolderToolStripMenuItem.Text = "Browse Current Save Folder";
-            this.browseCurrentSaveFolderToolStripMenuItem.Click += new System.EventHandler(this.browseCurrentSaveFolderToolStripMenuItem_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Image = global::EM_WebDocs.Properties.Resources.Main_Logo_Gif;
-            this.pictureBox1.Location = new System.Drawing.Point(7, 6);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(75, 75);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            // 
             // browseBaseFolder
             // 
             this.browseBaseFolder.Name = "browseBaseFolder";
@@ -630,19 +638,43 @@
             this.browseBaseFolder.Text = "Browse Base Folder";
             this.browseBaseFolder.Click += new System.EventHandler(this.browseBaseFolder_Click);
             // 
-            // btnBrowseOutputOrg
+            // browseCurrentSaveFolderToolStripMenuItem
             // 
-            this.btnBrowseOutputOrg.Location = new System.Drawing.Point(394, 129);
-            this.btnBrowseOutputOrg.Name = "btnBrowseOutputOrg";
-            this.btnBrowseOutputOrg.Size = new System.Drawing.Size(34, 22);
-            this.btnBrowseOutputOrg.TabIndex = 17;
-            this.btnBrowseOutputOrg.Text = "...";
-            this.btnBrowseOutputOrg.UseVisualStyleBackColor = true;
-            this.btnBrowseOutputOrg.Click += new System.EventHandler(this.btnBrowseOutputOrg_Click);
+            this.browseCurrentSaveFolderToolStripMenuItem.Name = "browseCurrentSaveFolderToolStripMenuItem";
+            this.browseCurrentSaveFolderToolStripMenuItem.Size = new System.Drawing.Size(236, 22);
+            this.browseCurrentSaveFolderToolStripMenuItem.Text = "Browse Current Save Folder";
+            this.browseCurrentSaveFolderToolStripMenuItem.Click += new System.EventHandler(this.browseCurrentSaveFolderToolStripMenuItem_Click);
             // 
             // fbdOutputOrg
             // 
             this.fbdOutputOrg.SelectedPath = "tbOutputOrg.Text";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(6, 200);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(221, 13);
+            this.label14.TabIndex = 18;
+            this.label14.Text = "Manually Fill in Empty Fields (Inactive if blank)";
+            // 
+            // tbProjManual
+            // 
+            this.tbProjManual.Location = new System.Drawing.Point(73, 224);
+            this.tbProjManual.Name = "tbProjManual";
+            this.tbProjManual.Size = new System.Drawing.Size(122, 20);
+            this.tbProjManual.TabIndex = 19;
+            this.tbProjManual.Tag = "";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(24, 227);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(40, 13);
+            this.label15.TabIndex = 20;
+            this.label15.Tag = "Project";
+            this.label15.Text = "Project";
             // 
             // Form1
             // 
@@ -673,9 +705,9 @@
             this.loadingPanel.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -738,6 +770,9 @@
         private System.Windows.Forms.ToolStripMenuItem browseBaseFolder;
         private System.Windows.Forms.Button btnBrowseOutputOrg;
         private System.Windows.Forms.FolderBrowserDialog fbdOutputOrg;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox tbProjManual;
+        private System.Windows.Forms.Label label14;
     }
 }
 
