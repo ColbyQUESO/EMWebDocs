@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CityScape", "CityScape\CityScape.csproj", "{273A5E06-B07B-412D-B2A6-A718EE374F62}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CityScape", "CityScape\CityScape.csproj", "{EF5EFAE9-2143-4C40-8B45-F0217F18F213}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{273A5E06-B07B-412D-B2A6-A718EE374F62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{273A5E06-B07B-412D-B2A6-A718EE374F62}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{273A5E06-B07B-412D-B2A6-A718EE374F62}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{273A5E06-B07B-412D-B2A6-A718EE374F62}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF5EFAE9-2143-4C40-8B45-F0217F18F213}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF5EFAE9-2143-4C40-8B45-F0217F18F213}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF5EFAE9-2143-4C40-8B45-F0217F18F213}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF5EFAE9-2143-4C40-8B45-F0217F18F213}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

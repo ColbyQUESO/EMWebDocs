@@ -15,7 +15,7 @@ namespace CityScape.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "CityScape is a cool software that makes city documents available to the general public.";
+            ViewBag.Message = "Your application description page.";
 
             return View();
         }
