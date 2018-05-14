@@ -37,6 +37,7 @@ namespace EM_WebDocs
             loadingPanel.Enabled = false;
             loadingPanel.BringToFront();
             loadingPanel.Location = new Point((this.Width - loadingPanel.Width) / 2, (this.Height - loadingPanel.Height) / 2);
+            dateTimePicker1.Value = DateTime.Today;
 
             try
             {
@@ -308,7 +309,7 @@ namespace EM_WebDocs
 
                 foreach (var f in files)
                 {
-                    EMDoc eDoc = emdocs.AddDoc(f, sSource, cbOCR.Checked);
+                    EMDoc eDoc = emdocs.AddDoc(f, sSource, cbOCR.Checked, (cbFillDate.Checked ? dateTimePicker1.Value : DateTime.Now));
 
                     UpdateStatusLabel("Indexing source " + currentEDoc + " of " + files.Length + ":\n" + eDoc.Id + " - " + eDoc.Title);
                     //eDocs.Add(em.Id + " - " + em.Title);

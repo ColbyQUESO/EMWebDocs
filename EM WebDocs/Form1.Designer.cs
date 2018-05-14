@@ -61,6 +61,9 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tbWriteOutOrg = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.tbProjManual = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
             this.btnBrowseOutputOrg = new System.Windows.Forms.Button();
             this.cbSource = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
@@ -83,9 +86,8 @@
             this.browseBaseFolder = new System.Windows.Forms.ToolStripMenuItem();
             this.browseCurrentSaveFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fbdOutputOrg = new System.Windows.Forms.FolderBrowserDialog();
-            this.label14 = new System.Windows.Forms.Label();
-            this.tbProjManual = new System.Windows.Forms.TextBox();
-            this.label15 = new System.Windows.Forms.Label();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.cbFillDate = new System.Windows.Forms.CheckBox();
             this.gbMain.SuspendLayout();
             this.gbDocsImgs.SuspendLayout();
             this.gbDups.SuspendLayout();
@@ -430,6 +432,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.cbFillDate);
+            this.groupBox1.Controls.Add(this.dateTimePicker1);
             this.groupBox1.Controls.Add(this.label15);
             this.groupBox1.Controls.Add(this.tbProjManual);
             this.groupBox1.Controls.Add(this.label14);
@@ -448,6 +452,33 @@
             this.groupBox1.Size = new System.Drawing.Size(433, 482);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(24, 227);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(40, 13);
+            this.label15.TabIndex = 20;
+            this.label15.Tag = "Project";
+            this.label15.Text = "Project";
+            // 
+            // tbProjManual
+            // 
+            this.tbProjManual.Location = new System.Drawing.Point(73, 224);
+            this.tbProjManual.Name = "tbProjManual";
+            this.tbProjManual.Size = new System.Drawing.Size(122, 20);
+            this.tbProjManual.TabIndex = 19;
+            this.tbProjManual.Tag = "";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(6, 200);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(221, 13);
+            this.label14.TabIndex = 18;
+            this.label14.Text = "Manually Fill in Empty Fields (Inactive if blank)";
             // 
             // btnBrowseOutputOrg
             // 
@@ -649,32 +680,25 @@
             // 
             this.fbdOutputOrg.SelectedPath = "tbOutputOrg.Text";
             // 
-            // label14
+            // dateTimePicker1
             // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(6, 200);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(221, 13);
-            this.label14.TabIndex = 18;
-            this.label14.Text = "Manually Fill in Empty Fields (Inactive if blank)";
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker1.Location = new System.Drawing.Point(73, 304);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(122, 20);
+            this.dateTimePicker1.TabIndex = 21;
             // 
-            // tbProjManual
+            // cbFillDate
             // 
-            this.tbProjManual.Location = new System.Drawing.Point(73, 224);
-            this.tbProjManual.Name = "tbProjManual";
-            this.tbProjManual.Size = new System.Drawing.Size(122, 20);
-            this.tbProjManual.TabIndex = 19;
-            this.tbProjManual.Tag = "";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(24, 227);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(40, 13);
-            this.label15.TabIndex = 20;
-            this.label15.Tag = "Project";
-            this.label15.Text = "Project";
+            this.cbFillDate.AutoSize = true;
+            this.cbFillDate.Checked = true;
+            this.cbFillDate.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbFillDate.Location = new System.Drawing.Point(9, 281);
+            this.cbFillDate.Name = "cbFillDate";
+            this.cbFillDate.Size = new System.Drawing.Size(104, 17);
+            this.cbFillDate.TabIndex = 23;
+            this.cbFillDate.Text = "Fill Date if Empty";
+            this.cbFillDate.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -773,6 +797,8 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox tbProjManual;
         private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.CheckBox cbFillDate;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
     }
 }
 

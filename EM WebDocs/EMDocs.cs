@@ -14,13 +14,15 @@ namespace EM_WebDocs
     {
         bool OCR = false;
         string source = "";
+        DateTime userDT = DateTime.Now;
 
         //List<EMDoc> collection = new List<EMDoc>();
 
-        public EMDoc AddDoc(string file, string src, bool ocr)
+        public EMDoc AddDoc(string file, string src, bool ocr, DateTime dt)
         {
             OCR = ocr;
             source = src;
+            userDT = dt;
 
             EMDoc doc = new EMDoc();
             string text;
@@ -47,20 +49,19 @@ namespace EM_WebDocs
             IEnumerable<Tuple<string, int>> terms = GetMostUsedWords(text);
             List<string> keywords = new List<string>();
 
-            foreach (var t in terms)
-            {
-                //Get keywords from SQLite...need to build the SQLite method and table in file and finish the code below that compares.  Then put keywords most found in XML node
-                List<string> kwListText = new List<string>();
-                kwListText = SQLite.GetKeyWord("dbo.key_agency_ocrtext");
+            //WORK ON LATER
+            //foreach (var t in terms)
+            //{
+            //    //Get keywords from SQLite...need to build the SQLite method and table in file and finish the code below that compares.  Then put keywords most found in XML node
+            //    List<string> kwListText = new List<string>();
+            //    kwListText = SQLite.GetKeyWord("dbo.key_agency_ocrtext");
 
-                foreach (var k in kwListText)
-                {
-                    if (t.Item1 == k //look in sqlite for terms to remove)
-                    Console.WriteLine(t.Item1 + ", " + t.Item2);
-                }
-
-
-            }
+            //    foreach (var k in kwListText)
+            //    {
+            //        if (t.Item1 == k //look in sqlite for terms to remove)
+            //        Console.WriteLine(t.Item1 + ", " + t.Item2);
+            //    }
+            //}
 
             var matchID = Regex.Match(file, @"\\(\d+)_ _"); //match for docs from the website
 
@@ -203,26 +204,53 @@ namespace EM_WebDocs
         {
             string docDate = "";
             DateTime dateTime = new DateTime();// = DateTime.Today;
+            bool valid = true;
 
             //Check within file
             if (docDate == "")
             {
-                Match date = Regex.Match(text, @"(?i)(January|February|March|April|May|June|July|August|September|October|November|December)\s*(\d{1,2}\w*\s?,?\s{0,5}\d{2,4})|(?i)([r|o][-.]\d{1,2}[.-][19|20]\d{2,3})");
+                Regex regex = new Regex(@"(?i)(January|February|March|April|May|June|July|August|September|October|November|December)\s*(\d{1,2}\w*\s?,?\s{0,5}\d{2,4})|(?i)([r|o][-.]\d{1,2}[.-][19|20]\d{2,3})");
+                List<DateTime> datesList = new List<DateTime>();
 
-                if (date.Groups[0].Value != "")
+                foreach (Match match in regex.Matches(text))
                 {
-                    Match textInDate = Regex.Match(date.Groups[0].Value, @"(?i)(January|February|March|April|May|June|July|August|September|October|November|December)\s*(\s\d{1,2}\w{2}\s?,?\s{0,5}\d{2,4})");
-
-                    if (textInDate.Success)
+                    try
                     {
-                        Match removeTextInDate = Regex.Match(date.Groups[0].Value, @"(?i)(January|February|March|April|May|June|July|August|September|October|November|December)\s*(\s\d{1,2})\w{2}(\s?,?\s{0,5}\d{2,4})");
-                        string temp = removeTextInDate.Groups[1].Value + removeTextInDate.Groups[2].Value + removeTextInDate.Groups[3].Value;
-
-                        docDate = temp;
+                        if (Convert.ToDateTime(match.Value) < DateTime.Today)
+                        {
+                            datesList.Add(Convert.ToDateTime(match.Value));
+                        }
                     }
-                    else
+                    catch
                     {
-                        docDate = date.Groups[0].Value;
+                        Console.WriteLine("Line 226...one value not valid");
+                    }
+                }
+
+                try
+                {
+                    DateTime d = datesList.Max(date => date);
+                    docDate = d.ToShortDateString();
+                }
+                catch
+                {
+                    Match date = Regex.Match(text, @"(?i)(January|February|March|April|May|June|July|August|September|October|November|December)\s*(\d{1,2}\w*\s?,?\s{0,5}\d{2,4})|(?i)([r|o][-.]\d{1,2}[.-][19|20]\d{2,3})");
+
+                    if (date.Groups[0].Value != "")
+                    {
+                        Match textInDate = Regex.Match(date.Groups[0].Value, @"(?i)(January|February|March|April|May|June|July|August|September|October|November|December)\s*(\s\d{1,2}\w{2}\s?,?\s{0,5}\d{2,4})");
+
+                        if (textInDate.Success)
+                        {
+                            Match removeTextInDate = Regex.Match(date.Groups[0].Value, @"(?i)(January|February|March|April|May|June|July|August|September|October|November|December)\s*(\s\d{1,2})\w{2}(\s?,?\s{0,5}\d{2,4})");
+                            string temp = removeTextInDate.Groups[1].Value + removeTextInDate.Groups[2].Value + removeTextInDate.Groups[3].Value;
+
+                            docDate = temp;
+                        }
+                        else
+                        {
+                            docDate = date.Groups[0].Value;
+                        }
                     }
                 }
 
@@ -243,9 +271,9 @@ namespace EM_WebDocs
                 }
                 catch (Exception e)
                 {
-                    Log.AddMessage(e.ToString(), "Error");
-                    Console.WriteLine(e.ToString() + " : " + e.InnerException);
-                    //dateTime = DateTime.Today;
+                    dateTime = userDT;
+                    //Log.AddMessage(e.ToString(), "Error");
+                    //Console.WriteLine(e.ToString() + " : " + e.InnerException);
                 }
             }
             else
@@ -259,7 +287,7 @@ namespace EM_WebDocs
             }
             else
             {
-                return new DateTime();
+                return DateTime.Now;
             }
         }
 
@@ -613,7 +641,7 @@ namespace EM_WebDocs
 
         private string ParseDate(string path)
         {
-            var matchYear = Regex.Match(path, @"(\d{1,2}[-.]\d{1,2}[-.][19|20]\d{2,4})|[R|r|O|o][-.]\d{1,2}[.-]([19|20]\d{2,3})|([19|20]\d{2,3})[-]?\d{2}|(\d{1,2}-\d{1,2}-\d{2})");
+            var matchYear = Regex.Match(path, @"(\d{1,2}[-.]\d{1,2}[-.][19|20]\d{2,4})|[R|r|O|o][-.]\d{1,2}[.-]|(\d{1,2}-\d{1,2}-\d{2})|(19\d{2})[-]?\d{2}|(20\d{2})[-]?\d{2}");
 
             int result = 0;
             Int32.TryParse(matchYear.Groups[0].Value, out result);
@@ -666,6 +694,10 @@ namespace EM_WebDocs
                     //Year is first
                     final = (int0 >= 96 ? "19" + int2 : "20" + int2) + "-" + int2 + "-" + int1;
                 }
+                else
+                {
+                    final = userDT.ToShortDateString();
+                }
 
                 return final;
             }
@@ -708,7 +740,7 @@ namespace EM_WebDocs
                     matchYr = Regex.Match(path, @" ([19|20]\d{2,3})_");
                 }
 
-                return "12/31/" + matchYr.Groups[1].Value;
+                return !matchYr.Success ? "" : "12/31/" + matchYr.Groups[1].Value;
             }
         }
 
